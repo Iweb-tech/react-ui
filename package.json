@@ -42,12 +42,12 @@
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "sass": "^1.32.8",
-    "source-map-explorer": "^2.5.2"
+    "source-map-explorer": "^2.5.2",
+    "react-scripts": "^4.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
-    "auto-changelog": "~2.2.1",
-    "react-scripts": "^4.0.3"
+    "auto-changelog": "~2.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
