@@ -1,37 +1,37 @@
 import React, { Component } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { PrivateRoute } from './_components';
+// import { history } from './_helpers';
 import './scss/style.scss';
+import { } from 'react-router-dom';
 
-const loading = (
-  <div className="pt-3 text-center">
-    <div className="sk-spinner sk-spinner-pulse"></div>
-  </div>
-)
+// const loading = (
+//   <div className="pt-3 text-center">
+//     <div className="sk-spinner sk-spinner-pulse"></div>
+//   </div>
+// )
 
-// Containers
-const TheLayout = React.lazy(() => import('./containers/TheLayout'));
-
-// Pages
 const Login = React.lazy(() => import('./views/pages/login/Login'));
-const Register = React.lazy(() => import('./views/pages/register/Register'));
-const Page404 = React.lazy(() => import('./views/pages/page404/Page404'));
-const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
+const About = React.lazy(() => import('./views/pages/about/About'));
+const Plan = React.lazy(() => import('./views/pages/plan/Plan'));
+const TheLayout = React.lazy(() => import('./containers/TheLayout'))
+
 
 class App extends Component {
-
   render() {
     return (
-      <HashRouter>
-          <React.Suspense fallback={loading}>
-            <Switch>
-              <Route exact path="/login" name="Login Page" render={props => <Login {...props}/>} />
-              <Route exact path="/register" name="Register Page" render={props => <Register {...props}/>} />
-              <Route exact path="/404" name="Page 404" render={props => <Page404 {...props}/>} />
-              <Route exact path="/500" name="Page 500" render={props => <Page500 {...props}/>} />
-              <Route path="/" name="Home" render={props => <TheLayout {...props}/>} />
-            </Switch>
-          </React.Suspense>
-      </HashRouter>
+      <Router>
+        <React.Suspense fallback={<h1>Loading...</h1>}>
+          <Switch>
+            <Route exact path="/login" render={props => <Login {...props} name="Login Page" />} />
+            <Route exact path="/about" render={props => <About {...props} name="About Page" />} />
+            <Route exact path="/plan" render={props => <Plan {...props} name="Plan Page" />} />
+            <PrivateRoute  path="/" component={TheLayout} name="Home Page" />
+            {/* <Route path="/" render={props => <PrivateRoute  {...props} name="Home Page" component={TheLayout}  />} /> */}
+            {/* <Route path="/" render={props => <TheLayout {...props} name="Home Page" />} /> */}
+          </Switch>
+        </React.Suspense>
+      </Router>
     );
   }
 }

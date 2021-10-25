@@ -1,4 +1,5 @@
 import React from 'react'
+// import { withRouter } from "react-router";
 import { Link } from 'react-router-dom'
 import {
 	CButton,
@@ -23,7 +24,7 @@ import { connect } from 'react-redux';
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
-		
+
 		this.props.dispatch(userActions.logout());
 	
 		this.state = {
@@ -39,10 +40,15 @@ class Login extends React.Component {
 		this.setState({ [name]: value });
 	}
 	handleSubmit() {
+		
 		this.setState({ submitted: true })
 		const { username, password } = this.state
 		const { dispatch , history } = this.props
+		console.log("called");
+		console.log(history);
+		return false
 		if (username && password){
+			
 			dispatch(userActions.login(username,password,history))
 		}
 			
@@ -52,6 +58,7 @@ class Login extends React.Component {
 		const { username, password, submitted } = this.state;
 		return (
 			<div className="c-app c-default-layout flex-row align-items-center">
+				
 				<CContainer>
 					<CRow className="justify-content-center">
 						<CCol md="8">
@@ -133,4 +140,6 @@ const mapStatetoProps = (state) => {
 	return { loggedIn , error };
 }
 
-export default connect(mapStatetoProps)(Login)
+
+const connectedLogin = connect(mapStatetoProps)(Login);
+export { connectedLogin as Login }; 

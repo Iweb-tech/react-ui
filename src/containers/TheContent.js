@@ -8,12 +8,13 @@ import { CContainer, CFade } from '@coreui/react'
 
 // routes config
 import routes from '../routes'
+const loading = <h1>Loading...</h1>
 
-const loading = (
-  <div className="pt-3 text-center">
-    <div className="sk-spinner sk-spinner-pulse"></div>
-  </div>
-)
+// const loading = (
+//   <div className="pt-3 text-center">
+//     <div className="sk-spinner sk-spinner-pulse"></div>
+//   </div>
+// )
 
 const TheContent = () => {
   return (
